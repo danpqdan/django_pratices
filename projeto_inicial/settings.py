@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'saudacao',
     'menu',
     'clientes',
+    'produtos',
 ]
 
 MIDDLEWARE = [
