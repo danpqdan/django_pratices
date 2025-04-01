@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Menu Principal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .menu-container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+
+        .menu-item {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #007bff;
+            /* Azul primário */
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            width: 100%;
+            /* Garante a largura total dentro do container */
+            box-sizing: border-box;
+            border: none;
+            /* Remove qualquer borda */
+        }
+
+        .menu-item:hover {
+            background-color: #0056b3;
+            /* Azul mais escuro no hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-container">
+        <h1>Menu Principal</h1>
+        <a href="{% url 'lista_clientes' %}" class="menu-item">Cadastro de Clientes</a>
+        <a href="{% url 'lista_produtos' %}" class="menu-item">Cadastro de Produtos</a>
+        <a href="" class="menu-item">Cadastro de Usuários</a>
+        <a href="{% url 'lista_vendas' %}" class="menu-item">Vendas</a>
+        <a href="" class="menu-item">Relatórios</a>
+        <form action="{% url 'logout' %}" method="post" style="margin: 0; padding: 0;">
+            {% csrf_token %}
+            <button type="submit" class="menu-item">
+                Sair
+            </button>
+        </form>
+    </div>
+</body>
+
+</html>
