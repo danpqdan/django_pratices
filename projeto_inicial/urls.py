@@ -25,4 +25,5 @@ urlpatterns = [
     path("login/", include("login.urls")),
     path("", lambda request: redirect("/login/")),
     path("menu/", include("menu.urls")),
+    path('clientes/', include('clientes.urls')),
 ]
