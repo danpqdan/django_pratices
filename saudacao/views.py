@@ -1,3 +1,6 @@
 from django.shortcuts import render
-
-# Create your views here.
+from datetime import datetime
+def saudacao_bom_dia(request):
+    saudacao = "Bom dia!"
+    # Passa a saudação para o template
+    return render(request, 'saudacao.html', {'saudacao': saudacao})
