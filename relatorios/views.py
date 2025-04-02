@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import render
 from vendas.models import Venda
 from .forms import RelatorioVendaForm
+from django.contrib.auth.decorators import login_required
 
 
 def relatorio_vendas(request):
@@ -19,4 +20,5 @@ def relatorio_vendas(request):
             "form": form,
             "vendas": vendas,
         }
-        return render(request, "relatorios/relatorio_vendas.html", context)
+        return render(request, "relatorio_vendas.html", context)
+
