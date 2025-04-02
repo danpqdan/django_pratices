@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "produtos",
     "vendas",
     "usuarios",
+    "relatorios",
 ]
 
 MIDDLEWARE = [
@@ -69,6 +70,7 @@ TEMPLATES = [
             BASE_DIR / "produtos/templates",
             BASE_DIR / "vendas/templates",
             BASE_DIR / "usuarios/templates",
+            BASE_DIR / "relatorios/templates",
         ],
         "OPTIONS": {
             "context_processors": [

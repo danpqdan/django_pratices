@@ -29,6 +29,7 @@ urlpatterns = [
     path("produtos/", include("produtos.urls")),
     path("vendas/", include("vendas.urls")),
     path("usuarios/", include("usuarios.urls")),
+    path('relatorios/', include('relatorios.urls')),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("", lambda request: redirect("/login/")),
 ]
