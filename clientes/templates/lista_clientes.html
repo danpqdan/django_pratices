@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,8 +27,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        th,
-        td {
+        th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -45,29 +43,23 @@
             background-color: #f2f2f2;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            background-color: #fff;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        tr:hover {
+            background-color: #e9f5ff;
         }
 
-        th,
         td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+            color: #555;
         }
 
-        th {
-            background-color: #007bff;
-            color: white;
-            font-size: 16px;
+        a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
         }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        a:hover {
+            color: #0056b3;
         }
 
         button {
@@ -95,9 +87,10 @@
         }
     </style>
 </head>
-
 <body>
+
     <h1>Lista de Clientes</h1>
+
     <table>
         <tr>
             <th>CPF</th>
@@ -114,6 +107,7 @@
         </tr>
         {% endfor %}
     </table>
+
     <div class="button-group">
         <a href="{% url 'cadastrar_cliente' %}">
             <button>Cadastrar Novo Cliente</button>
@@ -122,6 +116,7 @@
             <button>Voltar para o Menu</button>
         </a>
     </div>
-</body>
 
+</body>
 </html>
+

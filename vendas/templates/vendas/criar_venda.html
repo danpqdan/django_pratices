@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,20 +66,19 @@
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Nova Venda</h1>
-        <form method="POST" novalidate>
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" id="btn-criar">Criar Venda</button>
-        </form>
-        <a href="{% url 'lista_vendas' %}" class="back-link">Voltar para Lista de Vendas</a>
-    </div>
-    <script>
-        document.getElementById("btn-criar").disabled = false;
-    </script>
-</body>
+<div class="container">
+    <h1>Nova Venda</h1>
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" id="btn-criar">Criar Venda</button>
+    </form>
+    <a href="{% url 'lista_vendas' %}" class="back-link">Voltar para Lista de Vendas</a>
+</div>
 
+<script>
+    document.getElementById("btn-criar").disabled = false;
+</script>
+</body>
 </html>

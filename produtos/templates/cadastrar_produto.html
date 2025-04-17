@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastrar Cliente</title>
+    <title>Cadastrar Produto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,13 +48,16 @@
             margin-bottom: 15px;
         }
 
-        input {
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            width: 100%;
-        }
+		textarea {
+			height: auto; /* Remove o tamanho padrão do textarea */
+			padding: 10px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			font-size: 16px;
+			width: 100%;
+			height: 40px;
+			box-sizing: border-box; /* Garante que padding não afete a largura */
+		}
 
         button {
             background-color: #007bff;
@@ -97,39 +100,58 @@
         }
 
         .form-group .flex-group button {
-			flex-grow: 1;
+            flex-grow: 1;
         }
-		
     </style>
 </head>
-<body>
 
+<body>
 <div class="container">
-    <h1>Cadastrar Cliente</h1>
+    <h1>Cadastrar Produto</h1>
     <form method="POST">
         {% csrf_token %}
         
         <div class="form-group">
-            {{ form.cpf.label_tag }}
+            {{ form.codigo.label_tag }}
             <div class="flex-group">
-                {{ form.cpf }}
-                <button type="button" id="btnConsultar" style="padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Consultar</button>
+                {{ form.codigo }}
+                <button type="button" id="btnConsultar">Consultar</button>
             </div>
         </div>
         
         <div class="form-group">
-            {{ form.nome.label_tag }}
-            {{ form.nome }}
+            {{ form.descricao.label_tag }}
+            {{ form.descricao }}
         </div>
         
         <div class="form-group">
-            {{ form.telefone.label_tag }}
-            {{ form.telefone }}
+            {{ form.marca.label_tag }}
+            {{ form.marca }}
         </div>
-        
+
         <div class="form-group">
-            {{ form.email.label_tag }}
-            {{ form.email }}
+            {{ form.quantidade_minima.label_tag }}
+            {{ form.quantidade_minima }}
+        </div>
+
+        <div class="form-group">
+            {{ form.quantidade.label_tag }}
+            {{ form.quantidade }}
+        </div>
+
+        <div class="form-group">
+            {{ form.custo.label_tag }}
+            {{ form.custo }}
+        </div>
+
+        <div class="form-group">
+            {{ form.preco.label_tag }}
+            {{ form.preco }}
+        </div>
+
+        <div class="form-group">
+            {{ form.observacao.label_tag }}
+            {{ form.observacao }}
         </div>
 
         <div class="button-group">
@@ -139,58 +161,56 @@
         </div>
     </form>
 
-    <a href="{% url 'lista_clientes' %}" class="back-link">Voltar para Lista de Clientes</a>
+    <a href="{% url 'lista_produtos' %}" class="back-link">Voltar para Lista de Produtos</a>
 </div>
 
 <script>
-    // Consultar cliente
+    // Consultar produto
     document.getElementById('btnConsultar').addEventListener('click', function () {
-        let cpf = document.querySelector('input[name="cpf"]').value;
+        let codigo = document.querySelector('input[name="codigo"]').value;
 
-        // Remove pontos, traços e espaços do CPF
-        cpf = cpf.replace(/\D/g, '');
-
-        if (!cpf) {
-            alert('Por favor, insira um CPF válido.');
+        if (!codigo) {
+            alert('Por favor, insira um código válido.');
             return;
         }
 
-        fetch(`/clientes/consultar_cliente/${cpf}/`) // Corrigido para usar template string
+        fetch(`/produtos/consultar/${codigo}/`)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Cliente não encontrado.');
+                    throw new Error('Produto não encontrado.');
                 }
                 return response.json();
             })
             .then(data => {
-                document.querySelector('input[name="nome"]').value = data.nome;
-                document.querySelector('input[name="telefone"]').value = data.telefone;
-                document.querySelector('input[name="email"]').value = data.email;
+                document.querySelector('input[name="descricao"]').value = data.descricao;
+                document.querySelector('input[name="marca"]').value = data.marca;
+                document.querySelector('input[name="quantidade_minima"]').value = data.quantidade_minima;
+                document.querySelector('input[name="quantidade"]').value = data.quantidade;
+                document.querySelector('input[name="custo"]').value = data.custo;
+                document.querySelector('input[name="preco"]').value = data.preco;
+                document.querySelector('textarea[name="observacao"]').value = data.observacao;
             })
             .catch(error => {
                 alert(error.message);
             });
     });
 
-    // Limpar campos do formulário
+    // Limpar campos
     document.getElementById('btnLimpar').addEventListener('click', function () {
-        document.querySelector('input[name="cpf"]').value = '';
-        document.querySelector('input[name="nome"]').value = '';
-        document.querySelector('input[name="telefone"]').value = '';
-        document.querySelector('input[name="email"]').value = '';
+        document.querySelectorAll('input, textarea').forEach(el => el.value = '');
     });
 
-    // Excluir cliente
+    // Excluir produto
     document.getElementById('btnExcluir').addEventListener('click', function () {
-        const cpf = document.querySelector('input[name="cpf"]').value;
+        let codigo = document.querySelector('input[name="codigo"]').value;
 
-        if (!cpf) {
-            alert('Por favor, insira um CPF válido para excluir.');
+        if (!codigo) {
+            alert('Por favor, insira um código válido.');
             return;
         }
 
-        if (confirm('Tem certeza de que deseja excluir este cliente?')) {
-            fetch(`/clientes/excluir_cliente/${cpf}/`, {
+        if (confirm('Tem certeza de que deseja excluir este produto?')) {
+            fetch(`/produtos/excluir/${codigo}/`, {
                 method: 'DELETE',
                 headers: {
                     'X-CSRFToken': '{{ csrf_token }}'
@@ -198,13 +218,10 @@
             })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Erro ao excluir cliente. Verifique se o CPF é válido.');
+                    throw new Error('Erro ao excluir produto.');
                 }
-                return response.json();
-            })
-            .then(data => {
-                alert('Cliente excluído com sucesso.');
-                document.getElementById('btnLimpar').click(); // Limpar os campos
+                alert('Produto excluído com sucesso.');
+                document.getElementById('btnLimpar').click();
             })
             .catch(error => {
                 alert(error.message);
@@ -213,5 +230,4 @@
     });
 </script>
 
-</body>
-</html>
+

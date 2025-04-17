@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,8 +27,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        th,
-        td {
+        th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -92,6 +90,7 @@
 
 <body>
     <h1>Lista de Produtos</h1>
+
     <table>
         <tr>
             <th>Código</th>
@@ -110,6 +109,7 @@
         </tr>
         {% endfor %}
     </table>
+
     <div class="button-group">
         <a href="{% url 'cadastrar_produto' %}">
             <button>Cadastrar Novo Produto</button>
@@ -119,5 +119,4 @@
         </a>
     </div>
 </body>
-
 </html>

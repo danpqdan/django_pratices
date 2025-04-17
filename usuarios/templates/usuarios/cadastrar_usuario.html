@@ -1,7 +1,6 @@
 <!-- cadastrar_usuario.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,8 +47,7 @@
         label[for="id_email"],
         label[for="id_password1"],
         label[for="id_password2"] {
-            font-size: 10.4px;
-            /* Aumentado em 30% */
+            font-size: 10.4px; /* Aumentado em 30% */
         }
 
         input {
@@ -72,15 +70,14 @@
         }
 
         button[type="submit"] {
-            font-size: 10.4px;
-            /* Aumentado em 30% */
+            font-size: 10.4px; /* Aumentado em 30% */
         }
 
         button:hover {
             background-color: #0069d9;
         }
 
-        back-link {
+        .back-link {
             display: block;
             text-align: center;
             margin-top: 5px;
@@ -94,17 +91,17 @@
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Cadastrar Usuário</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Salvar</button>
-        </form>
-        <a href="{% url 'listar_usuarios' %}" class="back-link">Voltar para Lista de Usuários</a>
-    </div>
-</body>
 
+<div class="container">
+    <h1>Cadastrar Usuário</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="{% url 'listar_usuarios' %}" class="back-link">Voltar para Lista de Usuários</a>
+</div>
+
+</body>
 </html>

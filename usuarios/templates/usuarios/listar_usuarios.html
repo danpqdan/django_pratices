@@ -1,7 +1,6 @@
 <!-- listar_usuarios.html -->
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,8 +28,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        th,
-        td {
+        th, td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -90,9 +88,10 @@
         }
     </style>
 </head>
-
 <body>
+
     <h1>Lista de Usuários</h1>
+
     <table>
         <tr>
             <th>E-mail</th>
@@ -108,6 +107,7 @@
         </tr>
         {% endfor %}
     </table>
+
     <div class="button-group">
         <a href="{% url 'cadastrar_usuario' %}">
             <button>Cadastrar Novo Usuário</button>
@@ -116,6 +116,6 @@
             <button>Voltar para o Menu</button>
         </a>
     </div>
-</body>
 
+</body>
 </html>

@@ -1,14 +1,5 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin, Group, Permission
 from django.db import models
-
-from django.contrib.auth.models import (
-    AbstractBaseUser,
-    BaseUserManager,
-    PermissionsMixin,
-    Group,
-    Permission,
-)
-from django.db import models
-
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -25,19 +16,21 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault("is_superuser", True)
         return self.create_user(email, password, **extra_fields)
 
-
 class Usuario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
     nome_completo = models.CharField(max_length=150)
+
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
     groups = models.ManyToManyField(Group, related_name="usuario_groups", blank=True)
-    user_permissions = models.ManyToManyField(
-        Permission, related_name="usuario_permissions", blank=True
-    )
+    user_permissions = models.ManyToManyField(Permission, related_name="usuario_permissions", blank=True)
+
     objects = CustomUserManager()
+
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["nome_completo"]
 
     def __str__(self):
         return self.email
+

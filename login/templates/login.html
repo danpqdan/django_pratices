@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,10 +46,8 @@
         .form-group label {
             font-weight: bold;
             margin-right: 10px;
-            width: 100px;
-            /* Define largura fixa para os labels */
+            width: 100px; /* Define largura fixa para os labels */
             text-align: right;
-            /* Alinha os labels à direita */
         }
 
         .form-group input {
@@ -83,26 +80,30 @@
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Login</h1>
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Usuário:</label>
-                <input type="text" name="username" id="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" name="password" id="password" required>
-            </div>
-            <button type="submit">Entrar</button>
-        </form>
-        {% if form.errors %}
-        <p class="error-message">Usuário ou senha incorretos.</p>
-        {% endif %}
-    </div>
-</body>
 
+<div class="container">
+    <h1>Login</h1>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="username">Usuário:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Senha:</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    {% if form.errors %}
+        <p class="error-message">Usuário ou senha incorretos.</p>
+    {% endif %}
+</div>
+
+</body>
 </html>
