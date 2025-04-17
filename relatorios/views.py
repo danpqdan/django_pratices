@@ -19,4 +19,4 @@ def relatorio_vendas(request):
             "form": form,
             "vendas": vendas,
         }
-        return render(request, "relatorios/relatorio_vendas.html", context)
+        return render(request, "relatorio_vendas.html", context)
