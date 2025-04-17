@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-wwze4$780m3qpmw4s0*g1*22g3lgdnk4dno&$5_%i(!4u-w^0m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["212.85.20.166", "bgmax-tecnologia.com.br"]
+ALLOWED_HOSTS = ["*"]
 
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
