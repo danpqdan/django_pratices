@@ -15,6 +15,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["212.85.20.166", "bgmax-tecnologia.com.br"]
 
+STATIC_URL = "/python/static/"
+STATIC_ROOT = "/usr/local/lsws/Example/html/django_pratices/public/static"
+
 
 # Application definition
 
@@ -138,14 +141,6 @@ TIME_ZONE = "America/Sao_Paulo"  # Define o fuso horário para São Paulo
 USE_I18N = True  # Ativa a internacionalização (traduções e formatação local)
 
 USE_TZ = True  # Ativa o uso de fuso horário
-
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
-STATIC_URL = "/python/static/"
-STATIC_ROOT = "/usr/local/lsws/Example/html/django_pratices/public/static"
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
